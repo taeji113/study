@@ -1,128 +1,58 @@
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VI 관련 백엔드 개발자 김기정의 개발자 포트폴리오" />
-  <title>김기정 | VI Backend Developer</title>
-  <style>
-    :root { --bg:#0b1020; --surface:#121a2d; --surface-2:#18233c; --text:#f8fafc; --muted:#a8b3c7; --line:rgba(255,255,255,.12); --accent:#8b5cf6; --accent-2:#22d3ee; --max:1080px; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; color:var(--text); background:radial-gradient(circle at 80% 0%, #1b2451 0, transparent 34rem), var(--bg); font-family:"Noto Sans KR", "Malgun Gothic", Arial, sans-serif; line-height:1.7; }
-    a { color:inherit; text-decoration:none; }
-    .wrap { width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
-    header { position:sticky; top:0; z-index:10; border-bottom:1px solid var(--line); background:rgba(11,16,32,.78); backdrop-filter:blur(16px); }
-    nav { display:flex; align-items:center; justify-content:space-between; min-height:70px; }
-    .brand { font-size:1.1rem; font-weight:900; letter-spacing:-.04em; }
-    .brand span { color:var(--accent-2); }
-    .menu { display:flex; gap:24px; color:var(--muted); font-size:.9rem; }
-    .menu a:hover { color:var(--text); }
-    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:70px; align-items:center; padding:110px 0 100px; }
-    .eyebrow { color:var(--accent-2); font-size:.86rem; font-weight:800; letter-spacing:.08em; }
-    h1 { margin:16px 0 18px; font-size:clamp(2.8rem, 6vw, 5.6rem); line-height:1.05; letter-spacing:-.08em; }
-    h1 em { color:var(--accent-2); font-style:normal; }
-    .lead { max-width:600px; margin:0; color:var(--muted); font-size:1.08rem; }
-    .buttons { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
-    .button { display:inline-block; padding:11px 18px; border:1px solid var(--line); border-radius:9px; font-weight:800; transition:transform .2s, background .2s; }
-    .button:hover { transform:translateY(-2px); }
-    .button.primary { border-color:transparent; color:#08111f; background:linear-gradient(100deg, var(--accent-2), #67e8f9); }
-    .button.ghost { color:var(--text); background:rgba(255,255,255,.04); }
-    .profile-card { padding:28px; border:1px solid var(--line); border-radius:22px; background:linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.03)); box-shadow:0 24px 70px rgba(0,0,0,.28); }
-    .avatar { display:grid; place-items:center; width:76px; height:76px; margin-bottom:24px; border-radius:20px; color:#fff; background:linear-gradient(135deg, var(--accent), var(--accent-2)); font-size:1.7rem; font-weight:900; }
-    .profile-card h2 { margin:0; font-size:1.4rem; }
-    .profile-card p { margin:7px 0 24px; color:var(--muted); }
-    .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-    .stat { padding:14px; border:1px solid var(--line); border-radius:12px; background:rgba(0,0,0,.12); }
-    .stat strong { display:block; color:var(--accent-2); font-size:1.25rem; }
-    .stat span { color:var(--muted); font-size:.82rem; }
-    section { padding:78px 0; }
-    .section-title { margin:0 0 10px; font-size:clamp(1.9rem,4vw,3rem); letter-spacing:-.06em; }
-    .section-copy { margin:0 0 30px; color:var(--muted); }
-    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    .card { padding:24px; border:1px solid var(--line); border-radius:16px; background:rgba(18,26,45,.78); }
-    .card h3 { margin:0 0 8px; font-size:1.05rem; }
-    .card p { margin:0; color:var(--muted); font-size:.93rem; }
-    .tag { display:inline-block; margin-bottom:20px; padding:5px 9px; border-radius:999px; color:var(--accent-2); background:rgba(34,211,238,.10); font-size:.78rem; font-weight:800; }
-    .timeline { position:relative; display:grid; gap:18px; }
-    .timeline::before { content:""; position:absolute; top:11px; bottom:11px; left:8px; width:1px; background:var(--line); }
-    .milestone { position:relative; display:grid; grid-template-columns:80px 1fr; gap:24px; }
-    .milestone::before { content:""; position:absolute; top:9px; left:4px; width:9px; height:9px; border-radius:50%; background:var(--accent-2); box-shadow:0 0 0 5px var(--bg); }
-    .year { padding-left:30px; color:var(--accent-2); font-weight:900; }
-    .milestone-content { padding:20px 24px; border:1px solid var(--line); border-radius:14px; background:var(--surface); }
-    .milestone-content h3 { margin:0 0 5px; }
-    .milestone-content p { margin:0; color:var(--muted); }
-    .project { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center; padding:30px; border:1px solid rgba(139,92,246,.45); border-radius:20px; background:linear-gradient(110deg, rgba(139,92,246,.18), rgba(34,211,238,.07)); }
-    .project h3 { margin:0 0 8px; font-size:1.35rem; }
-    .project p { max-width:700px; margin:0; color:var(--muted); }
-    .project-mark { color:var(--accent-2); font-size:3.3rem; font-weight:900; }
-    .contact { display:flex; justify-content:space-between; gap:20px; align-items:center; padding:28px 30px; border-radius:18px; background:var(--surface-2); }
-    .contact h2 { margin:0 0 5px; font-size:1.35rem; }
-    .contact p { margin:0; color:var(--muted); }
-    footer { padding:30px 0 45px; color:var(--muted); font-size:.82rem; text-align:center; }
-    @media (max-width:760px) {
-      .wrap { width:min(100% - 28px, var(--max)); }
-      .menu { display:none; }
-      .hero { grid-template-columns:1fr; gap:42px; padding:75px 0 65px; }
-      .grid { grid-template-columns:1fr; }
-      .project, .contact { grid-template-columns:1fr; display:grid; }
-      .project-mark { display:none; }
-      section { padding:58px 0; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="wrap">
-      <nav>
-        <a class="brand" href="#home">KIM<span>.CODE</span></a>
-        <div class="menu">
-          <a href="#about">소개</a><a href="#career">경력</a><a href="#project">프로젝트</a><a href="#contact">연락처</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <main id="home">
-    <div class="wrap">
-      <section class="hero">
-        <div>
-          <span class="eyebrow">VI BACKEND DEVELOPER</span>
-          <h1>서비스의 흐름을<br /><em>단단한 시스템</em>으로.</h1>
-          <p class="lead">안녕하세요. VI 관련 백엔드 시스템을 개발하고 있는 김기정입니다. 업무의 복잡한 흐름을 이해하고, 안정적으로 동작하는 시스템으로 구현합니다.</p>
-          <div class="buttons"><a class="button primary" href="#project">프로젝트 보기</a><a class="button ghost" href="#contact">연락하기</a></div>
-        </div>
-        <aside class="profile-card" aria-label="프로필 요약">
-          <div class="avatar">KJ</div><h2>김기정</h2><p>VI 관련 백엔드 개발자</p>
-          <div class="stats"><div class="stat"><strong>2015~</strong><span>VI 시스템 개발</span></div><div class="stat"><strong>Codex</strong><span>개발 도구</span></div></div>
-        </aside>
-      </section>
-      <section id="about">
-        <h2 class="section-title">제가 하는 일</h2>
-        <p class="section-copy">현업의 요구사항을 시스템 관점에서 해석하고, 데이터와 업무 프로세스를 연결하는 백엔드 기능을 개발합니다.</p>
-        <div class="grid">
-          <article class="card"><span class="tag">BACKEND</span><h3>업무 시스템 개발</h3><p>VI 업무에 필요한 실적·예상 데이터를 다루는 시스템을 설계하고 개발합니다.</p></article>
-          <article class="card"><span class="tag">PROBLEM SOLVING</span><h3>복잡한 흐름 정리</h3><p>현업의 복잡한 요구사항을 기능 단위로 나누고 사용자 관점의 해결책을 찾습니다.</p></article>
-          <article class="card"><span class="tag">TOOL</span><h3>Codex 활용</h3><p>Codex code를 활용해 아이디어를 빠르게 검증하고 개발 생산성을 높입니다.</p></article>
-        </div>
-      </section>
-      <section id="career">
-        <h2 class="section-title">경력과 경험</h2>
-        <p class="section-copy">VI 시스템 개발 경험을 바탕으로 업무에 필요한 데이터와 기능을 꾸준히 확장해 왔습니다.</p>
-        <div class="timeline">
-          <article class="milestone"><div class="year">2015</div><div class="milestone-content"><h3>NPT 기반 VI 시스템 개발</h3><p>NPT 기반의 VI 시스템을 개발하며 업무 시스템의 기본 구조와 개발 경험을 쌓았습니다.</p></div></article>
-          <article class="milestone"><div class="year">2024</div><div class="milestone-content"><h3>SINGLEX 기반 시스템 개발</h3><p>SINGLEX 기반 VI 실적 시스템과 VI 예상 시스템을 개발했습니다.</p></div></article>
-        </div>
-      </section>
-      <section id="project">
-        <h2 class="section-title">주요 프로젝트</h2>
-        <div class="project"><div><span class="tag">AI · VI SYSTEM</span><h3>NEGO NAVI</h3><p>AI를 기반으로 VI 업무를 지원하는 시스템입니다. 복잡한 업무 정보를 보다 효율적으로 활용하고, 의사결정을 돕는 것을 목표로 합니다.</p></div><div class="project-mark">✦</div></div>
-      </section>
-      <section id="contact">
-        <div class="contact"><div><h2>함께 이야기해 보세요.</h2><p>개발 경험이나 프로젝트에 대해 궁금한 점이 있다면 연락 주세요.</p></div><a class="button primary" href="tel:010-3997-****">010-3997-****</a></div>
-      </section>
-    </div>
-  </main>
-  <footer>© 2026 김기정 · VI Backend Developer Portfolio</footer>
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kijeong Kim — 제품과 경험을 설계하는 포트폴리오" />
+    <title>Kijeong Kim — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="홈으로 이동"><span class="brand-mark">K</span><span>Kijeong Kim</span></a>
+        <nav class="nav" aria-label="주요 메뉴">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
+      </header>
 
+      <main id="top">
+        <section class="hero section-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="status-dot"></span> Available for selected projects</p>
+            <h1>Ideas into<br /><em>impact.</em></h1>
+            <p class="hero-intro">사람과 비즈니스를 더 나은 방향으로 움직이게 하는<br class="desktop-only" /> 디지털 경험을 설계합니다.</p>
+            <div class="hero-actions"><a class="button button-dark" href="#work">View selected work <span>↗</span></a><a class="text-link" href="#contact">Let’s talk <span>↗</span></a></div>
+          </div>
+          <div class="hero-visual" aria-label="추상적인 포트폴리오 그래픽">
+            <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div>
+            <div class="visual-caption"><span>01 / 04</span><span>Designing with intent</span></div>
+          </div>
+        </section>
+
+        <section class="marquee" aria-label="전문 분야"><div class="marquee-track"><span>PRODUCT DESIGN</span><i>✳</i><span>VISUAL SYSTEMS</span><i>✳</i><span>DIGITAL EXPERIENCES</span><i>✳</i><span>PRODUCT DESIGN</span><i>✳</i><span>VISUAL SYSTEMS</span></div></section>
+
+        <section class="work section" id="work">
+          <div class="section-heading"><div><p class="eyebrow">Selected work</p><h2>작업의 방향은<br /><em>명확하게.</em></h2></div><p class="section-note">복잡한 문제를 단순한 경험으로 바꾸고,<br />브랜드가 오래 기억될 수 있는 접점을 만듭니다.</p></div>
+          <div class="project-grid">
+            <a class="project project-large project-aurora" href="#contact"><div class="project-art"><div class="art-window"><span class="art-chip">AURORA</span><div class="art-lines"><b></b><b></b><b></b></div><div class="art-circle"></div></div></div><div class="project-meta"><div><p class="project-type">01 — Product / 2024</p><h3>Aurora Finance</h3></div><span class="arrow">↗</span></div></a>
+            <a class="project project-narrow project-cascade" href="#contact"><div class="project-art"><div class="cascade-word">C<br />A<br />S<br />C<br />A<br />D<br />E</div><div class="cascade-shape"></div></div><div class="project-meta"><div><p class="project-type">02 — Brand / 2023</p><h3>Cascade Studio</h3></div><span class="arrow">↗</span></div></a>
+            <a class="project project-narrow project-mono" href="#contact"><div class="project-art"><div class="mono-card"><span>ONE<br />MORE<br />THING.</span><small>ANALOG / DIGITAL</small></div></div><div class="project-meta"><div><p class="project-type">03 — Campaign / 2023</p><h3>One More Thing</h3></div><span class="arrow">↗</span></div></a>
+          </div>
+        </section>
+
+        <section class="about section" id="about"><div class="section-heading"><div><p class="eyebrow">A little about me</p><h2>좋은 디자인은<br /><em>좋은 질문에서.</em></h2></div><p class="section-note">전략부터 디테일까지, 프로젝트의 모든 단계에 함께합니다.</p></div><div class="about-content"><div class="about-number">04</div><div class="about-text"><p>저는 브랜드의 본질을 발견하고, 그것을 사람들이 실제로 사용하는 경험으로 연결하는 디자이너입니다. 아름답고 명확하며, 목적이 있는 결과물을 좋아합니다.</p><div class="capabilities"><span>Strategy</span><span>Art direction</span><span>Product design</span><span>Interaction</span></div><a class="text-link" href="mailto:hello@example.com">More about me <span>↗</span></a></div></div></section>
+
+        <section class="contact section" id="contact"><p class="eyebrow">Have a project in mind?</p><h2>Let’s make<br /><em>something good.</em></h2><a class="contact-email" href="mailto:hello@example.com">hello@example.com <span>↗</span></a><div class="contact-bottom"><span>Seoul · South Korea</span><div class="socials"><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a></div></div></section>
+      </main>
+      <footer class="footer"><span>© <span id="year"></span> Kijeong Kim</span><span>Built with intention.</span><a href="#top">Back to top ↑</a></footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

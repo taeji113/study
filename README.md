@@ -1,14 +1,26 @@
-# Kijeong Kim — Portfolio
+# 김기정 | VI Backend Developer
 
-GitHub Pages에서 바로 호스팅할 수 있는 무의존 정적 포트폴리오 사이트입니다.
+서비스의 흐름을 단단한 시스템으로 구현하는 VI 백엔드 개발자 김기정의 포트폴리오입니다.
 
-## GitHub Pages 배포
+## 소개
 
-1. 이 폴더를 GitHub repository의 기본 브랜치에 push합니다.
-2. repository의 **Settings → Pages**로 이동합니다.
-3. **Deploy from a branch**를 선택하고 `main` 브랜치의 `/ (root)`를 지정합니다.
-4. 저장 후 생성된 `https://사용자명.github.io/저장소명/` 주소를 확인합니다.
+VI 업무의 실적·예상 데이터를 다루는 시스템을 설계하고 개발합니다. 현업의 복잡한 요구사항을 시스템 관점에서 해석하고, 데이터와 업무 프로세스를 연결하는 백엔드 기능을 구현합니다.
 
-## 먼저 바꿀 내용
+## 주요 경험
 
-`index.html`에서 이름, 이메일(`hello@example.com`), GitHub/LinkedIn/Instagram 링크, 프로젝트 제목과 설명을 실제 정보로 교체하세요. 색상과 레이아웃은 `style.css` 상단의 CSS 변수에서 조정할 수 있습니다.
+- 2015~: NPT 기반 VI 시스템 개발
+- 2024~: SINGLEX 기반 시스템 개발
+- VI 실적 시스템 및 VI 예상 시스템 개발
+- Codex를 활용한 아이디어 검증 및 개발 생산성 향상
+
+## 연락처
+
+- Email: kijeong.kim@lge.com
+- GitHub: https://github.com/taeji113
+
+## GitHub Pages
+
+https://taeji113.github.io/study/
+## 가평자라섬 마라톤 안내
+
+https://taeji113.github.io/study/gapyeong-jaraseom-marathon.html
